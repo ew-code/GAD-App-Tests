@@ -19,4 +19,22 @@ test.describe('Verify login', () => {
     const title = await welcomePage.title();
     expect(title).toContain('Welcome');
   });
+
+  test('reject login with incorrect password @GAD-R02-01', async ({ page }) => {
+    // Arrange
+    const loginPage = new LoginPage(page);
+    const email = testUser1.userEmail;
+    const password = 'incorrectPassword';
+    await loginPage.goto();
+
+    // Act
+    await loginPage.login(email, password);
+
+    // Assert
+    const title = await loginPage.title();
+    await expect
+      .soft(loginPage.loginError)
+      .toContainText('Invalid username or password');
+    expect.soft(title).toContain('Login');
+  });
 });
