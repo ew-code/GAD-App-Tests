@@ -1,12 +1,12 @@
 # This file contains concept decisions for GAD automation framework
 
-# Table of Contents
+## Table of Contents
 
 1. [Integration of code style tools in framework](#integration-of-code-style-tools-in-framework)
 2. [Use of dotenv in automated tests](#use-of-dotenv-in-automated-tests)
 3. [Use of design patterns like POM, AAA, and composition in automated tests](#use-of-design-patterns-like-pom-aaa-and-composition-in-automated-tests)
 
-# Decisions
+## Decisions
 
 ## Integration of code style tools in framework <a id="integration-of-code-style-tools-in-framework"></a>
 
