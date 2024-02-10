@@ -8,7 +8,9 @@
 
 ## Decisions
 
-## Integration of code style tools in framework <a id="integration-of-code-style-tools-in-framework"></a>
+## Integration of code style tools in framework
+
+<!-- <a id="integration-of-code-style-tools-in-framework"></a> -->
 
 **ID**: 001
 **Status**: Decided
@@ -34,7 +36,9 @@ We need static code analysis tools for:
 
 **Creator**: Przemek B
 
-## Use of dotenv in automated tests <a id="use-of-dotenv-in-automated-tests"></a>
+## Use of dotenv in automated tests
+
+<!-- <a id="use-of-dotenv-in-automated-tests"></a> -->
 
 **ID**: 002
 **Status**: Decided
@@ -59,7 +63,9 @@ We need static code analysis tools for:
 
 **Creator**: Przemek B
 
-## Use of design patterns like POM, AAA, and composition in automated tests <a id="use-of-design-patterns-like-pom-aaa-and-composition-in-automated-tests"></a>
+## Use of design patterns like POM, AAA, and composition in automated tests
+
+<!-- <a id="use-of-design-patterns-like-pom-aaa-and-composition-in-automated-tests"></a> -->
 
 **ID**: 003
 **Status**: Decided
