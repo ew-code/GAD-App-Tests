@@ -20,7 +20,7 @@ We need static code analysis tools for:
 - better code readability
 - easy code formatting actions
 
-**Proposed solution**
+**Proposed solution**:
 
 - ESLint for linting coding rules for TypeScript files
 - Prettier for formatting files
