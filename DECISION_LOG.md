@@ -10,9 +10,9 @@
 
 ## Integration of code style tools in framework <a id="integration-of-code-style-tools-in-framework"></a>
 
-**ID**: 001  
-**Status**: Decided  
-**Date**: 2023/07/12  
+**ID**: 001
+**Status**: Decided
+**Date**: 2023/07/12
 **Context**:
 We need static code analysis tools for:
 
@@ -36,9 +36,9 @@ We need static code analysis tools for:
 
 ## Use of dotenv in automated tests <a id="use-of-dotenv-in-automated-tests"></a>
 
-**ID**: 002  
-**Status**: Decided  
-**Date**: 2023/07/26  
+**ID**: 002
+**Status**: Decided
+**Date**: 2023/07/26
 **Context**: We need a reliable way to manage environment-specific configurations, such as passwords, API keys, database connections, and other sensitive information.
 
 **Proposed solution**: Utilize the 'dotenv' library in our automated tests.
@@ -61,9 +61,9 @@ We need static code analysis tools for:
 
 ## Use of design patterns like POM, AAA, and composition in automated tests <a id="use-of-design-patterns-like-pom-aaa-and-composition-in-automated-tests"></a>
 
-**ID**: 003  
-**Status**: Decided  
-**Date**: 2023/07/26  
+**ID**: 003
+**Status**: Decided
+**Date**: 2023/07/26
 **Context**: As our automated test suite grows, we face challenges in maintaining test code readability, reusability, and scalability. We are considering adopting design patterns to improve the overall test structure and maintainability.
 
 **Proposed solution**: Implement the Page Object Model (POM) for UI tests, Arrange-Act-Assert (AAA) pattern for tests, and Composition for creating modular and flexible test components.
