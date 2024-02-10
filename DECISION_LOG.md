@@ -32,7 +32,7 @@ We need static code analysis tools for:
 
 **Decision**: Use Prettier, ESLint, and Husky to provide high code standard across the framework
 
-**Creator**: Przemek B
+**Creator**:
 
 ## Use of dotenv in automated tests
 
@@ -57,7 +57,7 @@ We need static code analysis tools for:
 
 **Decision**: Decided
 
-**Creator**: Przemek B
+**Creator**:
 
 ## Use of design patterns like POM, AAA, and composition in automated tests
 
@@ -103,4 +103,4 @@ We need static code analysis tools for:
 
 **Decision**: Decided. We will adopt the Page Object Model (POM) for UI tests, Arrange-Act-Assert (AAA) pattern for tests.
 
-**Creator**: Przemek B
+**Creator**:
