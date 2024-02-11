@@ -2,7 +2,7 @@ import { BasePage } from './base.page';
 import { Page } from '@playwright/test';
 
 export class LoginPage extends BasePage {
-  url = '/Login';
+  url = '/login/';
   emailInput = this.page.getByPlaceholder('Enter User Email');
   passwordInput = this.page.getByPlaceholder('Enter Password');
   loginButton = this.page.getByRole('button', { name: 'LogIn' });
@@ -17,5 +17,9 @@ export class LoginPage extends BasePage {
     await this.emailInput.fill(email);
     await this.passwordInput.fill(password);
     await this.loginButton.click();
+  }
+
+  async waitForPageToLoadUrl(): Promise<void> {
+    await this.page.waitForURL(this.url);
   }
 }
