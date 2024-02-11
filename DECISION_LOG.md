@@ -1,4 +1,4 @@
-# This file contains concept decisions for GAD automation framework
+<!-- # This file contains concept decisions for GAD automation framework
 
 ## Table of Contents
 
@@ -103,4 +103,4 @@ We need static code analysis tools for:
 
 **Decision**: Decided. We will adopt the Page Object Model (POM) for UI tests, Arrange-Act-Assert (AAA) pattern for tests.
 
-**Creator**: Przemek B
+**Creator**: Przemek B -->
