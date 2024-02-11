@@ -1,7 +1,7 @@
+import { expect, test } from '@playwright/test';
 import { ArticlesPage } from '../../src/pages/articles.page';
 import { CommentsPage } from '../../src/pages/comments.page';
 import { HomePage } from '../../src/pages/home.page';
-import { expect, test } from '@playwright/test';
 
 test.describe('Verify service main pages', () => {
   test('home page title @GAD-R01-01', async ({ page }) => {
@@ -40,8 +40,8 @@ test.describe('Verify service main pages', () => {
     expect(title).toContain('Comments');
   });
 
-  test('home page title simple', async ({ page }) => {
-    await page.goto('');
-    await expect(page).toHaveTitle(/GAD/);
+  // test('home page title simple', async ({ page }) => {
+  //   await page.goto('');
+  //   await expect(page).toHaveTitle(/GAD/);
   });
-});
+// });
