@@ -9,6 +9,7 @@ export class RegisterPage extends BasePage {
   passwordInput = this.page.getByTestId('password-input');
 
   registerButton = this.page.getByTestId('register-button');
+  alertPopUp = this.page.getByTestId('alert-popup');
 
   constructor(protected page: Page) {
     super(page);
