@@ -9,8 +9,9 @@ test.describe('Verify register', () => {
     page,
   }) => {
     // Arrange
-    const firstName = faker.person.firstName();
-    const lastName = faker.person.lastName();
+    //  const firstName = "O'K'on".replace(/[^A-Za-z]/g, '');
+    const firstName = faker.person.firstName().replace(/[^A-Za-z]/g, '');
+    const lastName = faker.person.lastName().replace(/[^A-Za-z]/g, '');
     // const email = `mobs${new Date().getTime()}@mobs.test.pl`;
     const email = faker.internet.email({
       firstName: firstName,
