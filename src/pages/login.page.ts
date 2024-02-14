@@ -2,7 +2,6 @@ import { LoginUser } from '../../src/models/user.models';
 import { BasePage } from './base.page';
 import { Page } from '@playwright/test';
 
-
 export class LoginPage extends BasePage {
   url = '/login/';
   emailInput = this.page.getByPlaceholder('Enter User Email');
