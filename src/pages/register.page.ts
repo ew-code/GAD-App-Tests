@@ -1,3 +1,4 @@
+import { RegisterUser } from '../models/user.models';
 import { BasePage } from './base.page';
 import { Page } from '@playwright/test';
 
@@ -15,16 +16,11 @@ export class RegisterPage extends BasePage {
     super(page);
   }
 
-  async register(
-    firstName: string,
-    lastName: string,
-    email: string,
-    password: string,
-  ): Promise<void> {
-    await this.firstNameInput.fill(firstName);
-    await this.lastNameInput.fill(lastName);
-    await this.emailInput.fill(email);
-    await this.passwordInput.fill(password);
+  async register(registerUserData: RegisterUser): Promise<void> {
+    await this.firstNameInput.fill(registerUserData.firstName);
+    await this.lastNameInput.fill(registerUserData.lastName);
+    await this.emailInput.fill(registerUserData.email);
+    await this.passwordInput.fill(registerUserData.password);
     await this.registerButton.click();
   }
 }

@@ -1,7 +1,9 @@
+import { RegisterUser } from '../../src/models/user.models';
 import { LoginPage } from '../../src/pages/login.page';
 import { RegisterPage } from '../../src/pages/register.page';
 import { WelcomePage } from '../../src/pages/welcome.page';
 import { faker } from '@faker-js/faker';
+// import {  faker} from '@faker-js/faker/locale/pl';
 import { expect, test } from '@playwright/test';
 
 test.describe('Verify register', () => {
@@ -10,19 +12,26 @@ test.describe('Verify register', () => {
   }) => {
     // Arrange
     //  const firstName = "O'K'on".replace(/[^A-Za-z]/g, '');
-    const firstName = faker.person.firstName().replace(/[^A-Za-z]/g, '');
-    const lastName = faker.person.lastName().replace(/[^A-Za-z]/g, '');
     // const email = `mobs${new Date().getTime()}@mobs.test.pl`;
-    const email = faker.internet.email({
-      firstName: firstName,
-      lastName: lastName,
+    const registerUserData: RegisterUser = {
+      firstName: faker.person.firstName().replace(/[^A-Za-z]/g, ''),
+      lastName: faker.person.lastName().replace(/[^A-Za-z]/g, ''),
+      email: '',
+      password: faker.internet.password(),
+    };
+
+    registerUserData.email = faker.internet.email({
+      firstName: registerUserData.firstName,
+      lastName: registerUserData.lastName,
     });
-    const password = faker.internet.password();
+
     const registerPage = new RegisterPage(page);
     const expectedAlertPopUpText = 'User created';
+
     // Act
     await registerPage.goto();
-    await registerPage.register(firstName, lastName, email, password);
+
+    await registerPage.register(registerUserData);
 
     // Assert
     await expect(registerPage.alertPopUp).toHaveText(expectedAlertPopUpText);
@@ -32,7 +41,7 @@ test.describe('Verify register', () => {
     expect.soft(titleLogin).toContain('Login');
 
     // Assert
-    await loginPage.login(email, password);
+    await loginPage.login(registerUserData.email, registerUserData.password);
     const welcomePage = new WelcomePage(page);
     const titleWelcome = await welcomePage.title();
     expect(titleWelcome).toContain('Welcome');
