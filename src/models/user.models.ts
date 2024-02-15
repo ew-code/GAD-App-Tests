@@ -6,6 +6,6 @@ export interface RegisterUser {
 }
 
 export interface LoginUser {
-  email: string;
-  password: string;
+  userEmail: string;
+  userPassword: string;
 }

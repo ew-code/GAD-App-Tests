@@ -41,7 +41,10 @@ test.describe('Verify register', () => {
     expect.soft(titleLogin).toContain('Login');
 
     // Assert
-    await loginPage.login(registerUserData.email, registerUserData.password);
+    await loginPage.login({
+      userEmail: registerUserData.email,
+      userPassword: registerUserData.password,
+    });
     const welcomePage = new WelcomePage(page);
     const titleWelcome = await welcomePage.title();
     expect(titleWelcome).toContain('Welcome');
