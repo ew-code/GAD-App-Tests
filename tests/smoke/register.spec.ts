@@ -11,8 +11,6 @@ test.describe('Verify register', () => {
     page,
   }) => {
     // Arrange
-    //  const firstName = "O'K'on".replace(/[^A-Za-z]/g, '');
-    // const email = `mobs${new Date().getTime()}@mobs.test.pl`;
     const registerUserData: RegisterUser = {
       firstName: faker.person.firstName().replace(/[^A-Za-z]/g, ''),
       lastName: faker.person.lastName().replace(/[^A-Za-z]/g, ''),
@@ -48,5 +46,49 @@ test.describe('Verify register', () => {
     const welcomePage = new WelcomePage(page);
     const titleWelcome = await welcomePage.title();
     expect(titleWelcome).toContain('Welcome');
+  });
+
+  test('not register with incorrect data - not valid email @GAD-R03-04', async ({
+    page,
+  }) => {
+    // Arrange
+    const registerUserData: RegisterUser = {
+      firstName: faker.person.firstName().replace(/[^A-Za-z]/g, ''),
+      lastName: faker.person.lastName().replace(/[^A-Za-z]/g, ''),
+      email: '#$%',
+      password: faker.internet.password(),
+    };
+    const expectedErrorText = 'Please provide a valid email address';
+
+    const registerPage = new RegisterPage(page);
+
+    // Act
+    await registerPage.goto();
+    await registerPage.register(registerUserData);
+
+    // Assert
+    await expect(registerPage.emailErrorText).toHaveText(expectedErrorText);
+  });
+
+  test('not register with incorrect data - email not provided @GAD-R03-04', async ({
+    page,
+  }) => {
+    // Arrange
+    const expectedErrorText = 'This field is required';
+    const registerPage = new RegisterPage(page);
+
+    // Act
+    await registerPage.goto();
+    await registerPage.firstNameInput.fill(
+      faker.person.firstName().replace(/[^A-Za-z]/g, ''),
+    );
+    await registerPage.lastNameInput.fill(
+      faker.person.lastName().replace(/[^A-Za-z]/g, ''),
+    );
+    await registerPage.passwordInput.fill(faker.internet.password());
+    await registerPage.registerButton.click();
+
+    // Assert
+    await expect(registerPage.emailErrorText).toHaveText(expectedErrorText);
   });
 });
