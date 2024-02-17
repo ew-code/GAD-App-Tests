@@ -1,8 +1,7 @@
-// import { Page } from '@playwright/test';
+import { Page } from '@playwright/test';
 
 export class ArticlesPage {
-  // addArticleButtonLogged = this.page.locator('#add-new');
-
+  titleInput = this.page.getByTestId('title-input');
   // await page.getByTestId('open-articles').click();
   // await page.getByTestId('title-input').click();
   // await page.getByTestId('title-input').fill('Test article about playwright');
@@ -21,5 +20,5 @@ export class ArticlesPage {
   // .selectOption('presentation_ec66bc07-4fc7-4b24-8f80-afd168adb692.jpg');
   // await page.getByTestId('save').click();
   // await page.getByTestId('article-title').click();
-  constructor() {}
+  constructor(private page: Page) {}
 }

@@ -7,7 +7,7 @@ export class ArticlesPage extends BasePage {
   mainMenu = new MainMenuComponent(this.page);
   addArticleButtonLogged = this.page.locator('#add-new');
 
-  constructor(page: Page) {
+  constructor(protected page: Page) {
     super(page);
   }
 }
