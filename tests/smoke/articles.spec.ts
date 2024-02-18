@@ -1,3 +1,4 @@
+import { ArticlePage } from '../../src/pages/article.page';
 import { ArticlesPage } from '../../src/pages/articles.page';
 import { LoginPage } from '../../src/pages/login.page';
 import { testUser1 } from '../../src/test-data/user.data';
@@ -15,12 +16,17 @@ test.describe('Verify aricles', () => {
     await articlesPage.goto();
     await articlesPage.addArticleButtonLogged.click();
     const addArticleView = new ArticleView(page);
-    await addArticleView.titleInput.fill('Test article about playwright');
-    await addArticleView.bodyText.fill(
-      'Playwright also offers a range of innovative features that make writing tests more flexible and powerful than ever before. For example, the ability to test user interactions with the keyboard and mouse, emulate touch device movements, and support multi-threaded testing are just some of the features that make Playwright such a unique tool.',
-    );
-    await addArticleView.saveButton.click();
-
     await expect.soft(addArticleView.header).toBeVisible();
+
+    const newArticleTitle = 'Test article about playwright';
+    const newArticleBody = 'Playwright test body';
+    await addArticleView.titleInput.fill(newArticleTitle);
+    await addArticleView.bodyText.fill(newArticleBody);
+    await addArticleView.saveButton.click();
+    const articlePage = new ArticlePage(page);
+
+    // Assert
+    await expect.soft(articlePage.articleTitle).toHaveText(newArticleTitle);
+    await expect.soft(articlePage.articleBody).toContainText(newArticleBody);
   });
 });
