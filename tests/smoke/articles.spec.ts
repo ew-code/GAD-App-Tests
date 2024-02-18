@@ -1,3 +1,4 @@
+import randomNewArticle from '../../src/factories/article.factory';
 import { ArticlePage } from '../../src/pages/article.page';
 import { ArticlesPage } from '../../src/pages/articles.page';
 import { LoginPage } from '../../src/pages/login.page';
@@ -14,19 +15,20 @@ test.describe('Verify aricles', () => {
 
     const articlesPage = new ArticlesPage(page);
     await articlesPage.goto();
+
+    // Act
     await articlesPage.addArticleButtonLogged.click();
     const addArticleView = new ArticleView(page);
     await expect.soft(addArticleView.header).toBeVisible();
+    const articleData = randomNewArticle();
 
-    const newArticleTitle = 'Test article about playwright';
-    const newArticleBody = 'Playwright test body';
-    await addArticleView.titleInput.fill(newArticleTitle);
-    await addArticleView.bodyText.fill(newArticleBody);
-    await addArticleView.saveButton.click();
-    const articlePage = new ArticlePage(page);
+    await addArticleView.createArticle(articleData);
 
     // Assert
-    await expect.soft(articlePage.articleTitle).toHaveText(newArticleTitle);
-    await expect.soft(articlePage.articleBody).toContainText(newArticleBody);
+    const articlePage = new ArticlePage(page);
+    await expect.soft(articlePage.articleTitle).toHaveText(articleData.title);
+    await expect
+      .soft(articlePage.articleBody)
+      .toContainText(articleData.body, { useInnerText: true });
   });
 });
