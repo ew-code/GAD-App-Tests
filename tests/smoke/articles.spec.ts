@@ -4,7 +4,6 @@ import { ArticlesPage } from '../../src/pages/articles.page';
 import { LoginPage } from '../../src/pages/login.page';
 import { testUser1 } from '../../src/test-data/user.data';
 import { ArticleView } from '../../src/views/add-article.view';
-import { faker } from '@faker-js/faker/locale/pl';
 import { expect, test } from '@playwright/test';
 
 test.describe('Verify aricles', () => {
@@ -33,7 +32,7 @@ test.describe('Verify aricles', () => {
       .toContainText(articleData.body, { useInnerText: true });
   });
 
-  test('not create article with incorrect data - title not provided @GAD-R04-01', async ({
+  test('reject creating article without title @GAD-R04-01', async ({
     page,
   }) => {
     // Arrange
@@ -47,22 +46,19 @@ test.describe('Verify aricles', () => {
     // Act
     await articlesPage.addArticleButtonLogged.click();
     const addArticleView = new ArticleView(page);
+
     await expect.soft(addArticleView.header).toBeVisible();
-    await addArticleView.bodyText.fill(faker.lorem.paragraph(2));
+
+    const articleData = randomNewArticle();
+    articleData.title = '';
+
     await addArticleView.saveButton.click();
 
     // Assert
-    // const articlePage = new ArticlePage(page);
-
     await expect(addArticleView.alertPopUp).toHaveText(expectedErrorText);
-    // await expect
-    // .soft(articlePage.articleBody)
-    // .toContainText(articleData.body, { useInnerText: true });
   });
 
-  test('not create article with incorrect data - body not provided @GAD-R04-01', async ({
-    page,
-  }) => {
+  test('reject creating article without body @GAD-R04-01', async ({ page }) => {
     // Arrange
     const loginPage = new LoginPage(page);
     await loginPage.goto();
@@ -75,16 +71,30 @@ test.describe('Verify aricles', () => {
     await articlesPage.addArticleButtonLogged.click();
     const addArticleView = new ArticleView(page);
     await expect.soft(addArticleView.header).toBeVisible();
-    await addArticleView.titleInput.fill(faker.lorem.sentence(1));
-    await addArticleView.saveButton.click();
 
-    // Assert
-    // const articlePage = new ArticlePage(page);
-    // await expect.soft(articlePage.articleTitle).toHaveText(articleData.title);
-    // await expect
-    // .soft(articlePage.articleBody)
-    // .toContainText(articleData.body, { useInnerText: true });
-    await page.getByTestId('save').click();
+    const articleData = randomNewArticle();
+    articleData.body = '';
+    await addArticleView.saveButton.click();
     await expect(addArticleView.alertPopUp).toHaveText(expectedErrorText);
+  });
+
+  test('reject sample @GAD-R04-01', async ({ page }) => {
+    // Arrange
+    const loginPage = new LoginPage(page);
+    const articlesPage = new ArticlesPage(page);
+    const addArticleView = new ArticleView(page);
+    const articleData = randomNewArticle();
+    articleData.body = '';
+
+    const expectedErrorMessage = 'Article was not created';
+    await loginPage.goto();
+    await loginPage.login(testUser1);
+    await articlesPage.goto();
+
+    // Act
+    await articlesPage.addArticleButtonLogged.click();
+    await addArticleView.createArticle(articleData);
+    // Assert
+    await expect(addArticleView.alertPopUp).toHaveText(expectedErrorMessage);
   });
 });
