@@ -78,15 +78,17 @@ test.describe('Verify aricles', () => {
     await expect(addArticleView.alertPopUp).toHaveText(expectedErrorText);
   });
 
-  test('reject sample @GAD-R04-01', async ({ page }) => {
+  test('reject without body @GAD-R04-01', async ({ page }) => {
     // Arrange
     const loginPage = new LoginPage(page);
     const articlesPage = new ArticlesPage(page);
     const addArticleView = new ArticleView(page);
+
     const articleData = randomNewArticle();
     articleData.body = '';
 
     const expectedErrorMessage = 'Article was not created';
+
     await loginPage.goto();
     await loginPage.login(testUser1);
     await articlesPage.goto();
@@ -94,6 +96,30 @@ test.describe('Verify aricles', () => {
     // Act
     await articlesPage.addArticleButtonLogged.click();
     await addArticleView.createArticle(articleData);
+
+    // Assert
+    await expect(addArticleView.alertPopUp).toHaveText(expectedErrorMessage);
+  });
+
+  test('reject without title @GAD-R04-01', async ({ page }) => {
+    // Arrange
+    const loginPage = new LoginPage(page);
+    const articlesPage = new ArticlesPage(page);
+    const addArticleView = new ArticleView(page);
+
+    const articleData = randomNewArticle();
+    articleData.title = '';
+
+    const expectedErrorMessage = 'Article was not created';
+
+    await loginPage.goto();
+    await loginPage.login(testUser1);
+    await articlesPage.goto();
+
+    // Act
+    await articlesPage.addArticleButtonLogged.click();
+    await addArticleView.createArticle(articleData);
+
     // Assert
     await expect(addArticleView.alertPopUp).toHaveText(expectedErrorMessage);
   });
