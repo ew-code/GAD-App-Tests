@@ -21,6 +21,8 @@ test.describe('Verify aricles', () => {
     await loginPage.goto();
     await loginPage.login(testUser1);
     await articlesPage.goto();
+    await articlesPage.addArticleButtonLogged.click();
+
     articleData = randomNewArticle();
   });
 
@@ -29,7 +31,6 @@ test.describe('Verify aricles', () => {
     const articlePage = new ArticlePage(page);
 
     // Act
-    await articlesPage.addArticleButtonLogged.click();
     await expect.soft(addArticleView.header).toBeVisible();
     await addArticleView.createArticle(articleData);
 
@@ -59,7 +60,6 @@ test.describe('Verify aricles', () => {
     const expectedErrorText = 'Article was not created';
 
     // Act
-    await articlesPage.addArticleButtonLogged.click();
     await expect.soft(addArticleView.header).toBeVisible();
 
     articleData.body = '';
@@ -75,7 +75,6 @@ test.describe('Verify aricles', () => {
     articleData.body = '';
 
     // Act
-    await articlesPage.addArticleButtonLogged.click();
     await addArticleView.createArticle(articleData);
 
     // Assert
@@ -88,7 +87,6 @@ test.describe('Verify aricles', () => {
     articleData.title = '';
 
     // Act
-    await articlesPage.addArticleButtonLogged.click();
     await addArticleView.createArticle(articleData);
 
     // Assert
