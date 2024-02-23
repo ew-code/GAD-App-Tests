@@ -1,5 +1,4 @@
 import randomNewArticle from '../../src/factories/article.factory';
-import { AddArticleModel } from '../../src/models/article.model';
 import { ArticlePage } from '../../src/pages/article.page';
 import { ArticlesPage } from '../../src/pages/articles.page';
 import { LoginPage } from '../../src/pages/login.page';
@@ -11,7 +10,6 @@ test.describe('Verify aricles', () => {
   let articlesPage: ArticlesPage;
   let addArticleView: ArticleView;
   let loginPage: LoginPage;
-  let articleData: AddArticleModel;
 
   test.beforeEach(async ({ page }) => {
     loginPage = new LoginPage(page);
@@ -22,13 +20,12 @@ test.describe('Verify aricles', () => {
     await loginPage.login(testUser1);
     await articlesPage.goto();
     await articlesPage.addArticleButtonLogged.click();
-
-    articleData = randomNewArticle();
   });
 
   test('create new article @GAD-R04-01', async ({ page }) => {
     // Arrange
     const articlePage = new ArticlePage(page);
+    const articleData = randomNewArticle();
 
     // Act
     await expect.soft(addArticleView.header).toBeVisible();
@@ -48,6 +45,7 @@ test.describe('Verify aricles', () => {
     // Act
     await articlesPage.addArticleButtonLogged.click();
     await expect.soft(addArticleView.header).toBeVisible();
+    const articleData = randomNewArticle();
     articleData.title = '';
     await addArticleView.saveButton.click();
 
@@ -61,7 +59,7 @@ test.describe('Verify aricles', () => {
 
     // Act
     await expect.soft(addArticleView.header).toBeVisible();
-
+    const articleData = randomNewArticle();
     articleData.body = '';
     await addArticleView.saveButton.click();
 
@@ -72,6 +70,7 @@ test.describe('Verify aricles', () => {
   test('reject without body @GAD-R04-01', async () => {
     // Arrange
     const expectedErrorMessage = 'Article was not created';
+    const articleData = randomNewArticle();
     articleData.body = '';
 
     // Act
@@ -84,6 +83,7 @@ test.describe('Verify aricles', () => {
   test('reject without title @GAD-R04-01', async () => {
     // Arrange
     const expectedErrorMessage = 'Article was not created';
+    const articleData = randomNewArticle();
     articleData.title = '';
 
     // Act
@@ -91,5 +91,35 @@ test.describe('Verify aricles', () => {
 
     // Assert
     await expect(addArticleView.alertPopUp).toHaveText(expectedErrorMessage);
+  });
+
+  test.describe('title length', () => {
+    test('reject with title exceeding 128 signs @GAD-R04-02', async () => {
+      // Arrange
+      const expectedErrorMessage = 'Article was not created';
+      const articleData = randomNewArticle(129);
+
+      // Act
+      await addArticleView.createArticle(articleData);
+
+      // Assert
+      await expect(addArticleView.alertPopUp).toHaveText(expectedErrorMessage);
+    });
+
+    test('create new article with title 128 signs @GAD-R04-02', async ({
+      page,
+    }) => {
+      // Arrange
+      const articlePage = new ArticlePage(page);
+      const expectedErrorMessage = 'Article was created';
+      const articleData = randomNewArticle(128);
+
+      // Act
+      await addArticleView.createArticle(articleData);
+
+      // Assert
+      await expect(addArticleView.alertPopUp).toHaveText(expectedErrorMessage);
+      await expect.soft(articlePage.articleTitle).toHaveText(articleData.title);
+    });
   });
 });
