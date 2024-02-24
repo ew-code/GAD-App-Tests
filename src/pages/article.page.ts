@@ -7,6 +7,7 @@ export class ArticlePage extends BasePage {
   mainMenu = new MainMenuComponent(this.page);
   articleTitle = this.page.locator('#title');
   articleBody = this.page.getByTestId('article-body');
+
   constructor(protected page: Page) {
     super(page);
   }

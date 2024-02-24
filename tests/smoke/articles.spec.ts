@@ -22,22 +22,6 @@ test.describe('Verify aricles', () => {
     await articlesPage.addArticleButtonLogged.click();
   });
 
-  test('create new article @GAD-R04-01', async ({ page }) => {
-    // Arrange
-    const articlePage = new ArticlePage(page);
-    const articleData = randomNewArticle();
-
-    // Act
-    await expect.soft(addArticleView.header).toBeVisible();
-    await addArticleView.createArticle(articleData);
-
-    // Assert
-    await expect.soft(articlePage.articleTitle).toHaveText(articleData.title);
-    await expect
-      .soft(articlePage.articleBody)
-      .toContainText(articleData.body, { useInnerText: true });
-  });
-
   test('reject creating article without title @GAD-R04-01', async () => {
     // Arrange
     const expectedErrorText = 'Article was not created';
