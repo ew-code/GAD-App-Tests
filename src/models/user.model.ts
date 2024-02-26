@@ -1,4 +1,4 @@
-export interface RegisterUser {
+export interface RegisterUserModel {
   firstName: string;
   lastName: string;
   email: string;
