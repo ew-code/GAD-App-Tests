@@ -42,7 +42,7 @@ test.describe('Create, verify and delete article', () => {
       .toContainText(articleData.body, { useInnerText: true });
   });
 
-  test('user can access single article @GAD-R04-03', async ({}) => {
+  test('user can access single article @GAD-R04-03', async () => {
     // Act
     await articlesPage.gotoArticle(articleData.title);
 
@@ -53,7 +53,7 @@ test.describe('Create, verify and delete article', () => {
       .toContainText(articleData.body, { useInnerText: true });
   });
 
-  test('user can delete his own article @GAD-R04-04', async ({}) => {
+  test('user can delete his own article @GAD-R04-04', async () => {
     // Arrange
     await articlesPage.gotoArticle(articleData.title);
 
