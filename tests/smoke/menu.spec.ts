@@ -8,6 +8,7 @@ test.describe('Verify main menu buttons', () => {
     page,
   }) => {
     // Arrange
+    const expectedCommentsTitle = 'Comments';
     const articlesPage = new ArticlesPage(page);
 
     // Act
@@ -17,13 +18,14 @@ test.describe('Verify main menu buttons', () => {
     const title = await commentsPage.getTitle();
 
     // Assert
-    expect(title).toContain('Comments');
+    expect(title).toContain(expectedCommentsTitle);
   });
 
   test('articles button navigates to articles page @GAD-R01-03', async ({
     page,
   }) => {
     // Arrange
+    const expectedArticlesTitle = 'Articles';
     const commentsPage = new CommentsPage(page);
 
     // Act
@@ -33,13 +35,14 @@ test.describe('Verify main menu buttons', () => {
     const title = await articlesPage.getTitle();
 
     // Assert
-    expect(title).toContain('Articles');
+    expect(title).toContain(expectedArticlesTitle);
   });
 
   test('home page button navigates to main page @GAD-R01-03', async ({
     page,
   }) => {
     // Arrange
+    const expectedHomePageTitle = 'GAD';
     const articlesPage = new ArticlesPage(page);
 
     // Act
@@ -49,6 +52,6 @@ test.describe('Verify main menu buttons', () => {
     const title = await homePage.getTitle();
 
     // Assert
-    expect(title).toContain('GAD');
+    expect(title).toContain(expectedHomePageTitle);
   });
 });
