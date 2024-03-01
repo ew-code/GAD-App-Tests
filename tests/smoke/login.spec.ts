@@ -7,16 +7,16 @@ import { expect, test } from '@playwright/test';
 test.describe('Verify login', () => {
   test('login with correct credentials @GAD-R02-01', async ({ page }) => {
     // Arrange
+    const expectedWelcomeTitle = 'Welcome';
     const loginPage = new LoginPage(page);
+    const welcomePage = new WelcomePage(page);
     await loginPage.goto();
 
     // Act
     await loginPage.login(testUser1);
-    const welcomePage = new WelcomePage(page);
 
     // Assert
     const title = await welcomePage.getTitle();
-    const expectedWelcomeTitle = 'Welcome';
     expect(title).toContain(expectedWelcomeTitle);
   });
 
@@ -24,6 +24,7 @@ test.describe('Verify login', () => {
     // Arrange
     const expectedLoginTitle = 'Login';
     const loginPage = new LoginPage(page);
+
     const loginUserData: LoginUserModel = {
       userEmail: testUser1.userEmail,
       userPassword: 'incorrectPassword',
