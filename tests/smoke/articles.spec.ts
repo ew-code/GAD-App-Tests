@@ -51,7 +51,7 @@ test.describe('Verify aricles', () => {
   // await expect(addArticleView.alertPopUp).toHaveText(expectedErrorText);
   // });
 
-  test('reject creating article without body @GAD-R04-01', async () => {
+  test('reject creating article without body @GAD-R04-01 @logged', async () => {
     // Arrange
     const expectedErrorMessage = 'Article was not created';
     const articleData = prepareRandomArticle();
