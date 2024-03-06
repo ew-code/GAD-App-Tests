@@ -1,23 +1,27 @@
 import prepareRandomArticle from '../../src/factories/article.factory';
 import { ArticlePage } from '../../src/pages/article.page';
 import { ArticlesPage } from '../../src/pages/articles.page';
-import { LoginPage } from '../../src/pages/login.page';
-import { testUser1 } from '../../src/test-data/user.data';
 import { ArticleView } from '../../src/views/add-article.view';
+// import { LoginPage } from '../../src/pages/login.page';
 import { expect, test } from '@playwright/test';
 
-test.describe('Verify aricles', () => {
+test.describe('Verify articles', () => {
   let articlesPage: ArticlesPage;
   let addArticleView: ArticleView;
-  let loginPage: LoginPage;
+  // let loginPage: LoginPage;
 
   test.beforeEach(async ({ page }) => {
-    loginPage = new LoginPage(page);
+    // loginPage = new LoginPage(page);
     articlesPage = new ArticlesPage(page);
     addArticleView = new ArticleView(page);
+    //
+    // await loginPage.goto();
+    // await loginPage.login(testUser1);
 
-    await loginPage.goto();
-    await loginPage.login(testUser1);
+    // const sessionData = JSON.parse(fs.readFileSync('session.json', 'utf-8'));
+    // await page.context().addCookies(sessionData.cookies);
+    // await page.context().storageState(sessionData.localStorage);
+
     await articlesPage.goto();
     await articlesPage.addArticleButtonLogged.click();
   });
@@ -64,7 +68,7 @@ test.describe('Verify aricles', () => {
     await expect(addArticleView.alertPopUp).toHaveText(expectedErrorMessage);
   });
 
-  test('reject creating article without title @GAD-R04-01', async () => {
+  test('reject creating article without title @GAD-R04-01 @logged', async () => {
     // Arrange
     const expectedErrorMessage = 'Article was not created';
     const articleData = prepareRandomArticle();
@@ -78,7 +82,7 @@ test.describe('Verify aricles', () => {
   });
 
   test.describe('title length', () => {
-    test('reject with title exceeding 128 signs @GAD-R04-02', async () => {
+    test('reject with title exceeding 128 signs @GAD-R04-02 @logged', async () => {
       // Arrange
       const expectedErrorMessage = 'Article was not created';
       const articleData = prepareRandomArticle(129);
@@ -90,7 +94,7 @@ test.describe('Verify aricles', () => {
       await expect(addArticleView.alertPopUp).toHaveText(expectedErrorMessage);
     });
 
-    test('create new article with title 128 signs @GAD-R04-02', async ({
+    test('create new article with title 128 signs @GAD-R04-02 @logged', async ({
       page,
     }) => {
       // Arrange
