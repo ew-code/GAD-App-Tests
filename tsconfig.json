@@ -4,6 +4,9 @@
     "module": "CommonJS",
     "sourceMap": true,
     "baseUrl": ".",
-    "paths": { "@_src/*": ["src/*"] },
+    "paths": {
+      "@_src/*": ["src/*"],
+      "@_pw-config": ["playwright.config.ts"],
+    },
   },
 }
