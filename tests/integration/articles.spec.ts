@@ -1,8 +1,8 @@
-import prepareRandomArticle from '../../src/factories/article.factory';
-import { ArticlePage } from '../../src/pages/article.page';
-import { ArticlesPage } from '../../src/pages/articles.page';
-import { ArticleView } from '../../src/views/add-article.view';
-// import { LoginPage } from '../../src/pages/login.page';
+// import { LoginPage } from '@_src/pages/login.page';
+import prepareRandomArticle from '@_src/factories/article.factory';
+import { ArticlePage } from '@_src/pages/article.page';
+import { ArticlesPage } from '@_src/pages/articles.page';
+import { ArticleView } from '@_src/views/add-article.view';
 import { expect, test } from '@playwright/test';
 
 test.describe('Verify articles', () => {
