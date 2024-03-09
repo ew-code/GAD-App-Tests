@@ -1,6 +1,5 @@
 import { ArticlesPage } from '@_src/pages/articles.page';
 import { CommentsPage } from '@_src/pages/comments.page';
-import { HomePage } from '@_src/pages/home.page';
 import { expect, test } from '@playwright/test';
 
 test.describe('Verify main menu buttons', () => {
@@ -10,11 +9,12 @@ test.describe('Verify main menu buttons', () => {
     // Arrange
     const expectedCommentsTitle = 'Comments';
     const articlesPage = new ArticlesPage(page);
-    const commentsPage = new CommentsPage(page);
+    // const commentsPage = new CommentsPage(page);
 
     // Act
     await articlesPage.goto();
-    await articlesPage.mainMenu.commentsButton.click();
+    // await articlesPage.mainMenu.commentsButton.click();
+    const commentsPage = await articlesPage.mainMenu.clickCommentsButton();
     const title = await commentsPage.getTitle();
 
     // Assert
@@ -27,11 +27,12 @@ test.describe('Verify main menu buttons', () => {
     // Arrange
     const expectedArticlesTitle = 'Articles';
     const commentsPage = new CommentsPage(page);
-    const articlesPage = new ArticlesPage(page);
+    // const articlesPage = new ArticlesPage(page);
 
     // Act
     await commentsPage.goto();
-    await commentsPage.mainMenu.articlesButton.click();
+    // await commentsPage.mainMenu.articlesButton.click();
+    const articlesPage = await commentsPage.mainMenu.clickArticlesButton();
     const title = await articlesPage.getTitle();
 
     // Assert
@@ -44,11 +45,12 @@ test.describe('Verify main menu buttons', () => {
     // Arrange
     const expectedHomePageTitle = 'GAD';
     const articlesPage = new ArticlesPage(page);
-    const homePage = new HomePage(page);
+    // const homePage = new HomePage(page);
 
     // Act
     await articlesPage.goto();
-    await articlesPage.mainMenu.homePage.click();
+    // await articlesPage.mainMenu.homePage.click();
+    const homePage = await articlesPage.mainMenu.clickHomePageLink();
     const title = await homePage.getTitle();
 
     // Assert
