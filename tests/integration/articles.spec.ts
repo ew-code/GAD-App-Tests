@@ -23,7 +23,9 @@ test.describe('Verify articles', () => {
     // await page.context().storageState(sessionData.localStorage);
 
     await articlesPage.goto();
-    await articlesPage.addArticleButtonLogged.click();
+    addArticleView = await articlesPage.clickAddArticleButtonLogged();
+
+    await expect.soft(addArticleView.addNewHeader).toBeVisible();
   });
 
   // test('reject creating article without title @GAD-R04-01', async () => {

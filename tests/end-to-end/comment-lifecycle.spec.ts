@@ -21,7 +21,7 @@ test.describe('Create, verify and delete comment', () => {
   test.beforeEach(async ({ page }) => {
     // loginPage = new LoginPage(page);
     articlesPage = new ArticlesPage(page);
-    addArticleView = new ArticleView(page);
+    // addArticleView = new ArticleView(page);
     articlePage = new ArticlePage(page);
     // addCommentView = new AddCommentView(page);
     // commentPage = new CommentPage(page);
@@ -32,7 +32,7 @@ test.describe('Create, verify and delete comment', () => {
     // await loginPage.goto();
     // await loginPage.login(testUser1);
     await articlesPage.goto();
-    await articlesPage.addArticleButtonLogged.click();
+    addArticleView = await articlesPage.clickAddArticleButtonLogged();
 
     await addArticleView.createArticle(articleData);
   });
