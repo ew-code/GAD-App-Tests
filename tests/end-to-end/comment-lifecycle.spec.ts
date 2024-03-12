@@ -2,7 +2,6 @@ import prepareRandomArticle from '@_src/factories/article.factory';
 import prepareRandomComment from '@_src/factories/comment.factory';
 import { AddArticleModel } from '@_src/models/article.model';
 import { AddCommentModel } from '@_src/models/comment.model';
-import { ArticlePage } from '@_src/pages/article.page';
 import { ArticlesPage } from '@_src/pages/articles.page';
 import { ArticleView } from '@_src/views/add-article.view';
 import { expect, test } from '@playwright/test';
@@ -21,7 +20,7 @@ test.describe('Create, verify and delete comment', () => {
     // loginPage = new LoginPage(page);
     articlesPage = new ArticlesPage(page);
     // addArticleView = new ArticleView(page);
-    articlePage = new ArticlePage(page);
+    // articlePage = new ArticlePage(page);
     // addCommentView = new AddCommentView(page);
     // commentPage = new CommentPage(page);
     // editCommentView = new EditCommentView(page);
@@ -33,7 +32,7 @@ test.describe('Create, verify and delete comment', () => {
     await articlesPage.goto();
     addArticleView = await articlesPage.clickAddArticleButtonLogged();
 
-    await addArticleView.createArticle(articleData);
+    articlePage = await addArticleView.createArticle(articleData);
   });
 
   test('operate on comments @GAD-R05-01 @GAD-R05-02 @logged', async () => {

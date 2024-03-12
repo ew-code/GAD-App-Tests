@@ -1,6 +1,5 @@
 // import { LoginPage } from '@_src/pages/login.page';
 import prepareRandomArticle from '@_src/factories/article.factory';
-import { ArticlePage } from '@_src/pages/article.page';
 import { ArticlesPage } from '@_src/pages/articles.page';
 import { ArticleView } from '@_src/views/add-article.view';
 import { expect, test } from '@playwright/test';
@@ -96,16 +95,14 @@ test.describe('Verify articles', () => {
       await expect(addArticleView.alertPopUp).toHaveText(expectedErrorMessage);
     });
 
-    test('create new article with title 128 signs @GAD-R04-02 @logged', async ({
-      page,
-    }) => {
+    test('create new article with title 128 signs @GAD-R04-02 @logged', async ({}) => {
       // Arrange
-      const articlePage = new ArticlePage(page);
+      // const articlePage = new ArticlePage(page);
       const expectedErrorMessage = 'Article was created';
       const articleData = prepareRandomArticle(128);
 
       // Act
-      await addArticleView.createArticle(articleData);
+      const articlePage = await addArticleView.createArticle(articleData);
 
       // Assert
       await expect(addArticleView.alertPopUp).toHaveText(expectedErrorMessage);
