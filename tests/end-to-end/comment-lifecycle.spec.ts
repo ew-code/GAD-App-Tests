@@ -2,14 +2,14 @@ import prepareRandomArticle from '@_src/factories/article.factory';
 import prepareRandomComment from '@_src/factories/comment.factory';
 import { AddArticleModel } from '@_src/models/article.model';
 import { AddCommentModel } from '@_src/models/comment.model';
+import { ArticlePage } from '@_src/pages/article.page';
 import { ArticlesPage } from '@_src/pages/articles.page';
-import { ArticleView } from '@_src/views/add-article.view';
 import { expect, test } from '@playwright/test';
 
 test.describe('Create, verify and delete comment', () => {
-  let articlesPage: ArticlesPage;
+  // let articlesPage: ArticlesPage;
   let articlePage: ArticlePage;
-  let addArticleView: ArticleView;
+  // let addArticleView: ArticleView;
   // let loginPage: LoginPage;
   let articleData: AddArticleModel;
   // let addCommentView: AddCommentView;
@@ -18,8 +18,8 @@ test.describe('Create, verify and delete comment', () => {
 
   test.beforeEach(async ({ page }) => {
     // loginPage = new LoginPage(page);
-    articlesPage = new ArticlesPage(page);
-    // addArticleView = new ArticleView(page);
+    const articlesPage = new ArticlesPage(page);
+    // const addArticleView = new ArticleView(page);
     // articlePage = new ArticlePage(page);
     // addCommentView = new AddCommentView(page);
     // commentPage = new CommentPage(page);
@@ -30,8 +30,7 @@ test.describe('Create, verify and delete comment', () => {
     // await loginPage.goto();
     // await loginPage.login(testUser1);
     await articlesPage.goto();
-    addArticleView = await articlesPage.clickAddArticleButtonLogged();
-
+    const addArticleView = await articlesPage.clickAddArticleButtonLogged();
     articlePage = await addArticleView.createArticle(articleData);
   });
 
