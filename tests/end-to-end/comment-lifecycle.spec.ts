@@ -48,7 +48,7 @@ test.describe('Create, verify and delete comment', () => {
         .soft(addCommentView.addNewHeader)
         .toHaveText(expectedAddCommentHeader);
 
-      await addCommentView.createComment(newCommentData);
+      articlePage = await addCommentView.createComment(newCommentData);
 
       //Assert
       await expect
@@ -56,7 +56,7 @@ test.describe('Create, verify and delete comment', () => {
         .toHaveText(expectedCommentCreatedPopup);
     });
 
-    const commentPage = await test.step('verify comment', async () => {
+    let commentPage = await test.step('verify comment', async () => {
       //Act
       const articleComment = articlePage.getArticleComment(newCommentData.body);
       await expect(articleComment.body).toHaveText(newCommentData.body);
@@ -78,7 +78,7 @@ test.describe('Create, verify and delete comment', () => {
 
       //Act
       const editCommentView = await commentPage.clickEditButton();
-      await editCommentView.updateComment(editCommentData);
+      commentPage = await editCommentView.updateComment(editCommentData);
 
       //Assert
       await expect
@@ -105,7 +105,7 @@ test.describe('Create, verify and delete comment', () => {
       //Act
       const addCommentView = await articlePage.clickAddCommentButton();
       // await articlePage.addCommentButton.click();
-      await addCommentView.createComment(secondCommentData);
+      articlePage = await addCommentView.createComment(secondCommentData);
 
       //Assert
       const articleComment = articlePage.getArticleComment(
@@ -124,7 +124,7 @@ test.describe('Create, verify and delete comment', () => {
       //Act
       // await articlePage.addCommentButton.click();
       const addCommentView = await articlePage.clickAddCommentButton();
-      await addCommentView.createComment(newCommentData);
+      articlePage = await addCommentView.createComment(newCommentData);
 
       //Assert
       await expect
@@ -138,7 +138,7 @@ test.describe('Create, verify and delete comment', () => {
           const secondCommentData = prepareRandomComment();
           // await articlePage.addCommentButton.click();
           const addCommentView = await articlePage.clickAddCommentButton();
-          await addCommentView.createComment(secondCommentData);
+          articlePage = await addCommentView.createComment(secondCommentData);
           return secondCommentData.body;
         });
 
