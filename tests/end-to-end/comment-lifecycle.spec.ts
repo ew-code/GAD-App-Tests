@@ -60,9 +60,7 @@ test.describe('Create, verify and delete comment', () => {
       const articleComment = articlePage.getArticleComment(newCommentData.body);
       await expect(articleComment.body).toHaveText(newCommentData.body);
       // await articleComment.link.click();
-      const commentPage = await articlePage.clickCommentLink(
-        articleComment.link,
-      );
+      const commentPage = await articlePage.clickCommentLink(articleComment);
       //Assert
       await expect(commentPage.commentBody).toHaveText(newCommentData.body);
 
