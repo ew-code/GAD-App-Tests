@@ -1,10 +1,9 @@
 import prepareRandomArticle from '@_src/factories/article.factory';
 import prepareRandomComment from '@_src/factories/comment.factory';
+import { expect, test } from '@_src/fixtures/merge.fixture';
 import { AddArticleModel } from '@_src/models/article.model';
 import { AddCommentModel } from '@_src/models/comment.model';
 import { ArticlePage } from '@_src/pages/article.page';
-import { ArticlesPage } from '@_src/pages/articles.page';
-import { expect, test } from '@playwright/test';
 
 test.describe('Create, verify and delete comment', () => {
   // let articlesPage: ArticlesPage;
@@ -16,9 +15,9 @@ test.describe('Create, verify and delete comment', () => {
   // let commentPage: CommentPage;
   // let editCommentView: EditCommentView;
 
-  test.beforeEach(async ({ page }) => {
+  test.beforeEach(async ({ addArticleView }) => {
     // loginPage = new LoginPage(page);
-    const articlesPage = new ArticlesPage(page);
+    // const articlesPage = new ArticlesPage(page);
     // const addArticleView = new ArticleView(page);
     // articlePage = new ArticlePage(page);
     // addCommentView = new AddCommentView(page);
@@ -29,8 +28,8 @@ test.describe('Create, verify and delete comment', () => {
 
     // await loginPage.goto();
     // await loginPage.login(testUser1);
-    await articlesPage.goto();
-    const addArticleView = await articlesPage.clickAddArticleButtonLogged();
+    // await articlesPage.goto();
+    // const addArticleView = await articlesPage.clickAddArticleButtonLogged();
     articlePage = await addArticleView.createArticle(articleData);
   });
 
@@ -61,6 +60,7 @@ test.describe('Create, verify and delete comment', () => {
       await expect(articleComment.body).toHaveText(newCommentData.body);
       // await articleComment.link.click();
       const commentPage = await articlePage.clickCommentLink(articleComment);
+
       //Assert
       await expect(commentPage.commentBody).toHaveText(newCommentData.body);
 
