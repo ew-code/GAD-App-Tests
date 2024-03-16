@@ -1,15 +1,14 @@
+import { expect, test } from '@_src/fixtures/merge.fixture';
 import { LoginUserModel } from '@_src/models/user.model';
-import { LoginPage } from '@_src/pages/login.page';
 import { testUser1 } from '@_src/test-data/user.data';
-import { expect, test } from '@playwright/test';
 
 test.describe('Verify login', () => {
-  test('login with correct credentials @GAD-R02-01', async ({ page }) => {
+  test('login with correct credentials @GAD-R02-01', async ({ loginPage }) => {
     // Arrange
     const expectedWelcomeTitle = 'Welcome';
-    const loginPage = new LoginPage(page);
+    // const loginPage = new LoginPage(page);
     // const welcomePage = new WelcomePage(page);
-    await loginPage.goto();
+    // await loginPage.goto();
 
     // Act
     const welcomePage = await loginPage.login(testUser1);
@@ -19,16 +18,18 @@ test.describe('Verify login', () => {
     expect(title).toContain(expectedWelcomeTitle);
   });
 
-  test('reject login with incorrect password @GAD-R02-01', async ({ page }) => {
+  test('reject login with incorrect password @GAD-R02-01', async ({
+    loginPage,
+  }) => {
     // Arrange
     const expectedLoginTitle = 'Login';
-    const loginPage = new LoginPage(page);
+    // const loginPage = new LoginPage(page);
 
     const loginUserData: LoginUserModel = {
       userEmail: testUser1.userEmail,
       userPassword: 'incorrectPassword',
     };
-    await loginPage.goto();
+    // await loginPage.goto();
 
     // Act
     await loginPage.login(loginUserData);
