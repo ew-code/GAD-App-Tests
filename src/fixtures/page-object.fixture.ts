@@ -3,6 +3,7 @@ import { ArticlesPage } from '@_src/pages/articles.page';
 import { CommentsPage } from '@_src/pages/comments.page';
 import { HomePage } from '@_src/pages/home.page';
 import { LoginPage } from '@_src/pages/login.page';
+import { RegisterPage } from '@_src/pages/register.page';
 import { test as baseTest } from '@playwright/test';
 
 interface Pages {
@@ -10,6 +11,7 @@ interface Pages {
   commentsPage: CommentsPage;
   homePage: HomePage;
   loginPage: LoginPage;
+  registerPage: RegisterPage;
 }
 
 export const pageObjectTest = baseTest.extend<Pages>({
@@ -36,5 +38,11 @@ export const pageObjectTest = baseTest.extend<Pages>({
     const loginPage = new LoginPage(page);
     await loginPage.goto();
     await use(loginPage);
+  },
+
+  registerPage: async ({ page }, use) => {
+    const registerPage = new RegisterPage(page);
+    await registerPage.goto();
+    await use(registerPage);
   },
 });
