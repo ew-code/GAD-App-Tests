@@ -1,31 +1,28 @@
 // import { LoginPage } from '@_src/pages/login.page';
 import prepareRandomArticle from '@_src/factories/article.factory';
-import { ArticlesPage } from '@_src/pages/articles.page';
-import { ArticleView } from '@_src/views/add-article.view';
-import { expect, test } from '@playwright/test';
+import { expect, test } from '@_src/fixtures/merge.fixture';
 
 test.describe('Verify articles', () => {
-  let articlesPage: ArticlesPage;
-  let addArticleView: ArticleView;
+  // let articlesPage: ArticlesPage;
+  // let addArticleView: ArticleView;
   // let loginPage: LoginPage;
 
-  test.beforeEach(async ({ page }) => {
-    // loginPage = new LoginPage(page);
-    articlesPage = new ArticlesPage(page);
-    addArticleView = new ArticleView(page);
-    //
-    // await loginPage.goto();
-    // await loginPage.login(testUser1);
+  // test.beforeEach(async ({ addArticleView, articlesPage }) => {
+  // loginPage = new LoginPage(page);
+  // articlesPage = new ArticlesPage(page);
+  // addArticleView = new ArticleView(page);
+  //
+  // await loginPage.goto();
+  // await loginPage.login(testUser1);
 
-    // const sessionData = JSON.parse(fs.readFileSync('session.json', 'utf-8'));
-    // await page.context().addCookies(sessionData.cookies);
-    // await page.context().storageState(sessionData.localStorage);
+  // const sessionData = JSON.parse(fs.readFileSync('session.json', 'utf-8'));
+  // await page.context().addCookies(sessionData.cookies);
+  // await page.context().storageState(sessionData.localStorage);
 
-    await articlesPage.goto();
-    addArticleView = await articlesPage.clickAddArticleButtonLogged();
-
-    await expect.soft(addArticleView.addNewHeader).toBeVisible();
-  });
+  // await articlesPage.goto();
+  // addArticleView = await articlesPage.clickAddArticleButtonLogged();
+  // await expect.soft(addArticleView.addNewHeader).toBeVisible();
+  // });
 
   // test('reject creating article without title @GAD-R04-01', async () => {
   // Arrange
@@ -56,7 +53,9 @@ test.describe('Verify articles', () => {
   // await expect(addArticleView.alertPopUp).toHaveText(expectedErrorText);
   // });
 
-  test('reject creating article without body @GAD-R04-01 @logged', async () => {
+  test('reject creating article without body @GAD-R04-01 @logged', async ({
+    addArticleView,
+  }) => {
     // Arrange
     const expectedErrorMessage = 'Article was not created';
     const articleData = prepareRandomArticle();
@@ -69,7 +68,9 @@ test.describe('Verify articles', () => {
     await expect(addArticleView.alertPopUp).toHaveText(expectedErrorMessage);
   });
 
-  test('reject creating article without title @GAD-R04-01 @logged', async () => {
+  test('reject creating article without title @GAD-R04-01 @logged', async ({
+    addArticleView,
+  }) => {
     // Arrange
     const expectedErrorMessage = 'Article was not created';
     const articleData = prepareRandomArticle();
@@ -83,7 +84,9 @@ test.describe('Verify articles', () => {
   });
 
   test.describe('title length', () => {
-    test('reject with title exceeding 128 signs @GAD-R04-02 @logged', async () => {
+    test('reject with title exceeding 128 signs @GAD-R04-02 @logged', async ({
+      addArticleView,
+    }) => {
       // Arrange
       const expectedErrorMessage = 'Article was not created';
       const articleData = prepareRandomArticle(129);
@@ -95,7 +98,9 @@ test.describe('Verify articles', () => {
       await expect(addArticleView.alertPopUp).toHaveText(expectedErrorMessage);
     });
 
-    test('create new article with title 128 signs @GAD-R04-02 @logged', async ({}) => {
+    test('create new article with title 128 signs @GAD-R04-02 @logged', async ({
+      addArticleView,
+    }) => {
       // Arrange
       // const articlePage = new ArticlePage(page);
       const expectedErrorMessage = 'Article was created';
