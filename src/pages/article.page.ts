@@ -16,7 +16,7 @@ export class ArticlePage extends BasePage {
   articleTitle = this.page.locator('#title');
   articleBody = this.page.getByTestId('article-body');
   deleteIcon = this.page.getByTestId('delete');
-  addCommentButton = this.page.locator('#add-new');
+  addCommentButton = this.page.locator('#add-new-comment');
   alertPopUp = this.page.getByTestId('alert-popup');
 
   constructor(protected page: Page) {
