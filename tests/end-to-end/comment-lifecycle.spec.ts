@@ -1,40 +1,41 @@
-import prepareRandomArticle from '@_src/factories/article.factory';
 import prepareRandomComment from '@_src/factories/comment.factory';
 import { expect, test } from '@_src/fixtures/merge.fixture';
-import { AddArticleModel } from '@_src/models/article.model';
 import { AddCommentModel } from '@_src/models/comment.model';
-import { ArticlePage } from '@_src/pages/article.page';
 
 test.describe('Create, verify and delete comment', () => {
   // let articlesPage: ArticlesPage;
-  let articlePage: ArticlePage;
+  // let articlePage: ArticlePage;
   // let addArticleView: ArticleView;
   // let loginPage: LoginPage;
-  let articleData: AddArticleModel;
+  // let articleData: AddArticleModel;
   // let addCommentView: AddCommentView;
   // let commentPage: CommentPage;
   // let editCommentView: EditCommentView;
 
-  test.beforeEach(async ({ addArticleView }) => {
-    // loginPage = new LoginPage(page);
-    // const articlesPage = new ArticlesPage(page);
-    // const addArticleView = new ArticleView(page);
-    // articlePage = new ArticlePage(page);
-    // addCommentView = new AddCommentView(page);
-    // commentPage = new CommentPage(page);
-    // editCommentView = new EditCommentView(page);
+  // test.beforeEach(async ({ createRandomArticle }) => {
+  // loginPage = new LoginPage(page);
+  // const articlesPage = new ArticlesPage(page);
+  // const addArticleView = new ArticleView(page);
+  // articlePage = new ArticlePage(page);
+  // addCommentView = new AddCommentView(page);
+  // commentPage = new CommentPage(page);
+  // editCommentView = new EditCommentView(page);
 
-    articleData = prepareRandomArticle();
+  // articleData = prepareRandomArticle();
 
-    // await loginPage.goto();
-    // await loginPage.login(testUser1);
-    // await articlesPage.goto();
-    // const addArticleView = await articlesPage.clickAddArticleButtonLogged();
-    articlePage = await addArticleView.createArticle(articleData);
-  });
+  // await loginPage.goto();
+  // await loginPage.login(testUser1);
+  // await articlesPage.goto();
+  // const addArticleView = await articlesPage.clickAddArticleButtonLogged();
+  // articlePage = createRandomArticle;
+  // });
 
-  test('operate on comments @GAD-R05-01 @GAD-R05-02 @logged', async () => {
+  test('operate on comments @GAD-R05-01 @GAD-R05-02 @logged', async ({
+    createRandomArticle,
+  }) => {
     const newCommentData = prepareRandomComment();
+    let articlePage = createRandomArticle.articlePage;
+
     await test.step('create new comment', async () => {
       //Arrange
       const expectedAddCommentHeader = 'Add New Comment';
@@ -112,7 +113,10 @@ test.describe('Create, verify and delete comment', () => {
     });
   });
 
-  test('user can add more than one comment to article @GAD-R05-03 @logged', async () => {
+  test('user can add more than one comment to article @GAD-R05-03 @logged', async ({
+    createRandomArticle,
+  }) => {
+    let articlePage = createRandomArticle.articleData;
     await test.step('create first comment', async () => {
       //Arrange
       const expectedCommentCreatedPopup = 'Comment was created';
