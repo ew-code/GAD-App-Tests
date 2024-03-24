@@ -1,6 +1,6 @@
-import { RESPONSE_TIMEOUT } from '@_pw-config';
 import prepareRandomComment from '@_src/factories/comment.factory';
 import { expect, test } from '@_src/fixtures/merge.fixture';
+import { waitForResponse } from '@_src/utils/wait.util';
 
 test.describe('Verify comment', () => {
   test('should return created comment @GAD-R07-06 @logged', async ({
@@ -12,21 +12,7 @@ test.describe('Verify comment', () => {
 
     const newCommentData = prepareRandomComment();
 
-    const responsePromise = page.waitForResponse(
-      (response) => {
-        // console.log(
-        // response.request().method(),
-        // response.url(),
-        // response.status(),
-        // );
-        return (
-          response.url().includes('/api/comments') &&
-          response.status() == 200 &&
-          response.request().method() == 'GET'
-        );
-      },
-      { timeout: RESPONSE_TIMEOUT },
-    );
+    const responsePromise = waitForResponse(page, '/api/comments', 'GET', 200);
 
     let articlePage = createRandomArticle.articlePage;
     const addCommentView = await articlePage.clickAddCommentButton();
