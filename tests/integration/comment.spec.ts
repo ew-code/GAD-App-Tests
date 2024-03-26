@@ -11,8 +11,14 @@ test.describe('Verify comment', () => {
     const expectedCommentCreatedPopup = 'Comment was created';
 
     const newCommentData = prepareRandomComment();
+    const waitParams = {
+      page,
+      url: '/api/comments',
+      method: 'GET',
+      text: newCommentData.body,
+    };
 
-    const responsePromise = waitForResponse(page, '/api/comments', 'GET', 200);
+    const responsePromise = waitForResponse(waitParams);
 
     let articlePage = createRandomArticle.articlePage;
     const addCommentView = await articlePage.clickAddCommentButton();
