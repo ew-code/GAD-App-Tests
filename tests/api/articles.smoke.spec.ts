@@ -11,7 +11,7 @@ test.describe('Verify articles API endpoint @GAD-R08-01 @api', () => {
     expect(response.status()).toBe(expectedStatusCode);
   });
 
-  test('Get articles shouls reurn at least one article @predefined_data', async ({
+  test('GET articles should return at least one article @predefined_data', async ({
     request,
   }) => {
     // Arrange
@@ -24,5 +24,30 @@ test.describe('Verify articles API endpoint @GAD-R08-01 @api', () => {
 
     // Assert
     expect(responseJson.length).toBeGreaterThanOrEqual(expectedMinArticleCount);
+  });
+
+  test('GET articles return article object @predefined_data', async ({
+    request,
+  }) => {
+    // Arrange
+    const articlesUrl = '/api/articles';
+    const expectedRequiredFields = [
+      'id',
+      'user_id',
+      'title',
+      'body',
+      'date',
+      'image',
+    ];
+
+    // Act
+    const response = await request.get(articlesUrl);
+    const responseJson = await response.json();
+    const article = responseJson[0];
+
+    // Assert
+    expectedRequiredFields.forEach((key) => {
+      expect.soft(article).toHaveProperty(key);
+    });
   });
 });
