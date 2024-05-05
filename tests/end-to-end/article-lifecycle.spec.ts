@@ -27,10 +27,6 @@ test.describe('Create, verify and delete article', () => {
   }) => {
     // Arrange
     articleData = createRandomArticle.articleData;
-
-    // Act
-    // const addArticleView = await articlesPage.clickAddArticleButtonLogged();
-    // await expect.soft(addArticleView.addNewHeader).toBeVisible();
     const articlePage = createRandomArticle.articlePage;
 
     // Assert

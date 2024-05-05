@@ -1,4 +1,4 @@
-import prepareRandomComment from '@_src/factories/comment.factory';
+import { prepareRandomComment } from '@_src/factories/comment.factory';
 import { expect, test } from '@_src/fixtures/merge.fixture';
 import { waitForResponse } from '@_src/utils/wait.util';
 

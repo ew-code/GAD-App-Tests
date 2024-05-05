@@ -6,9 +6,6 @@ test.describe('Verify login', () => {
   test('login with correct credentials @GAD-R02-01', async ({ loginPage }) => {
     // Arrange
     const expectedWelcomeTitle = 'Welcome';
-    // const loginPage = new LoginPage(page);
-    // const welcomePage = new WelcomePage(page);
-    // await loginPage.goto();
 
     // Act
     const welcomePage = await loginPage.login(testUser1);
@@ -23,13 +20,11 @@ test.describe('Verify login', () => {
   }) => {
     // Arrange
     const expectedLoginTitle = 'Login';
-    // const loginPage = new LoginPage(page);
 
     const loginUserData: LoginUserModel = {
       userEmail: testUser1.userEmail,
       userPassword: 'incorrectPassword',
     };
-    // await loginPage.goto();
 
     // Act
     await loginPage.login(loginUserData);

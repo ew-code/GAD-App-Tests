@@ -1,4 +1,3 @@
-// import { Pages } from '@_src/models/pages.model';
 import { ArticlePage } from '@_src/pages/article.page';
 import { ArticlesPage } from '@_src/pages/articles.page';
 import { CommentsPage } from '@_src/pages/comments.page';
@@ -21,7 +20,6 @@ interface Pages {
 export const pageObjectTest = baseTest.extend<Pages>({
   addArticleView: async ({ articlesPage }, use) => {
     const addArticleView = await articlesPage.clickAddArticleButtonLogged();
-    // await expect.soft(addArticleView.addNewHeader).toBeVisible();
     await use(addArticleView);
   },
 
@@ -33,7 +31,6 @@ export const pageObjectTest = baseTest.extend<Pages>({
   articlesPage: async ({ page }, use) => {
     const articlesPage = new ArticlesPage(page);
     await articlesPage.goto();
-    // await use(new ArticlesPage(page));
     await use(articlesPage);
   },
 

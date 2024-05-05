@@ -1,16 +1,12 @@
-// import {  faker} from '@faker-js/faker/locale/pl';
 import prepareRandomUser from '@_src/factories/user.factory';
 import { expect, test } from '@_src/fixtures/merge.fixture';
 import { RegisterUserModel } from '@_src/models/user.model';
 
 test.describe('Verify register', () => {
-  // let registerPage: RegisterPage;
   let registerUserData: RegisterUserModel;
 
-  test.beforeEach(async ({}) => {
-    // registerPage = new RegisterPage(page);
+  test.beforeEach(async () => {
     registerUserData = prepareRandomUser();
-    // await registerPage.goto();
   });
 
   test('register with correct data and login @GAD-R03-01 @GAD-R03-02 @GAD-R03-03', async ({
@@ -20,9 +16,6 @@ test.describe('Verify register', () => {
     const expectedAlertPopUpText = 'User created';
     const expectedLoginTitle = 'Login';
     const expectedWelcomeTitle = 'Welcome';
-
-    // const loginPage = new LoginPage(page);
-    // const welcomePage = new WelcomePage(page);
 
     // Act
     const loginPage = await registerPage.register(registerUserData);

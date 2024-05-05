@@ -1,4 +1,3 @@
-// import { Pages } from '@_src/models/pages.model';
 import prepareRandomArticle from '@_src/factories/article.factory';
 import { pageObjectTest } from '@_src/fixtures/page-object.fixture';
 import { AddArticleModel } from '@_src/models/article.model';
