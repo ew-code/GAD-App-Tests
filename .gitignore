@@ -405,3 +405,33 @@ FodyWeavers.xsd
 
 # JetBrains Rider
 *.sln.iml
+
+# Allure report files and directories
+allure-results/
+allure-report/
+
+# Log files and other temporary files
+*.log
+*.tmp
+*.swp
+
+# Node modules (if applicable, e.g., if using Allure with a JavaScript project)
+node_modules/
+
+# Build directories
+target/
+build/
+
+# IDE specific files (optional, depending on your IDE)
+.idea/
+.vscode/
+*.iml
+
+# Maven or Gradle specific files (if applicable)
+*.class
+*.jar
+*.war
+*.ear
+*.db
+.gradle/
+build/
