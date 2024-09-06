@@ -1,26 +1,9 @@
-// import { LoginPage } from '@_src/pages/login.page';
-// import { testUser1 } from '@_src/test-data/user.data';
 import { expect, test } from '@_src/fixtures/merge.fixture';
 import { AddArticleModel } from '@_src/models/article.model';
 
 test.describe.configure({ mode: 'serial' });
 test.describe('Create, verify and delete article', () => {
-  // let articlesPage: ArticlesPage;
-  // let articlePage: ArticlePage;
-  // let addArticleView: ArticleView;
-  // let loginPage: LoginPage;
   let articleData: AddArticleModel;
-
-  // test.beforeEach(async ({ page }) => {
-  // loginPage = new LoginPage(page);
-  // articlesPage = new ArticlesPage(page);
-  // addArticleView = new ArticleView(page);
-  // articlePage = new ArticlePage(page);
-
-  // await loginPage.goto();
-  // await loginPage.login(testUser1);
-  // await articlesPage.goto();
-  // });
 
   test('create new article @GAD-R04-01 @logged', async ({
     createRandomArticle,

@@ -2,9 +2,7 @@
 
 ## GAD Application
 
-<!-- Repository: <https://github.com/jaktestowac/gad-gui-api-demo> -->
-
-Follow instructions in app README
+Download the app GUI API Demo --> follow instructions in app README: https://github.com/jaktestowac/gad-gui-api-demo 
 
 ## Prepare
 
