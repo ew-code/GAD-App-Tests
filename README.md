@@ -18,7 +18,7 @@ The repository contains code for **automated tests** of the **GAD app (GUI API D
 
 ## Overview
 
-This project automates end-to-end testing of the GAD application using [Playwright](https://playwright.dev/). The tests are written in **TypeScript** to ensure type safety and maintainability.
+This project automates end-to-end and integration testing of the GAD application using [Playwright](https://playwright.dev/). The tests are written in **TypeScript** to ensure type safety and maintainability.
 
 The repository contains code for **automated tests** of the **GAD app (GUI API Demo)** created using the **Playwright library**. You can download the GAD application for testing purposes from the [official repo](https://github.com/jaktestowac/gad-gui-api-demo). Follow the instructions in its README to set up the app.
 
