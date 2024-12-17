@@ -7,7 +7,7 @@
     "paths": {
       "@_config/*": ["config/*"],
       "@_pw-config": ["playwright.config.ts"],
-      "@_src/*": ["src/*"],
-    },
-  },
+      "@_src/*": ["src/*"]
+    }
+  }
 }
