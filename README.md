@@ -37,7 +37,7 @@ Make sure the following tools are installed on your system:
 - [VS Code](https://code.visualstudio.com/) (recommended for development)
 - [Git](https://git-scm.com/)
 - [Node.js](https://nodejs.org/en/) (version >16)
-  
+
 Optional, but recommended:
 
 - Install **VS Code recommended plugins** for better development experience.
@@ -45,22 +45,26 @@ Optional, but recommended:
 ## Installation and Setup
 
 1. **Clone the repository**:
+
    ```bash
    git clone https://github.com/your-repo-url
    cd your-repo-url
    ```
 
 2. **Install dependencies**:
+
    ```bash
    npm install
    ```
 
 3. **Set up Playwright**:
+
    ```bash
    npx playwright install --with-deps chromium
    ```
 
 4. **Set up Husky for Git hooks** (optional):
+
    ```bash
    npx husky install
    ```
@@ -91,16 +95,19 @@ npx playwright test
 You can run specific tests by using tags defined in your test cases. For example:
 
 - Run a single tagged test:
+
   ```bash
   npx playwright test --grep @GAD-R01-01
   ```
 
 - Run all tests with specific tags:
+
   ```bash
   npx playwright test --grep @GAD-R01
   ```
 
   Or:
+
   ```bash
   npx playwright test --grep "@GAD"
   ```
