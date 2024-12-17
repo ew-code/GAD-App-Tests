@@ -5,6 +5,7 @@
   "main": "index.js",
   "scripts": {
     "format": "npx prettier --write .",
+    "eslint": "npx eslint . --fix",
     "format:check": "npx prettier . --check \"!**.ts\"",
     "lint": "npx eslint . --max-warnings=0",
     "prepare": "husky",
