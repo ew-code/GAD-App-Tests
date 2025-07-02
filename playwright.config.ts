@@ -16,7 +16,11 @@ export default defineConfig({
   fullyParallel: true,
   retries: 0,
   workers: undefined,
-  reporter: [['html'], ['allure-playwright']],
+  reporter: [
+    ['html'],
+    ['allure-playwright'],
+    ['@artilleryio/playwright-reporter', { name: 'Performance Tests' }],
+  ],
   use: {
     baseURL: BASE_URL,
     actionTimeout: 0,
